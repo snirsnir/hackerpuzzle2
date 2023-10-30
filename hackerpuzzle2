@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacker Puzzle Advanced</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-size: 18px;
+      /* Increased text size */
+      transition: background-color 0.5s;
+    }
+
+    #container {
+      text-align: center;
+    }
+
+    #riddleBox {
+      margin: 20px 0;
+      width: 500px;
+      height: 100px;
+      font-size: 20px;
+      /* Increased text size in the text area */
+    }
+
+    #answerBox {
+      margin: 20px 0;
+      width: 200px;
+      font-size: 16px;
+      /* Increased text size in the input box */
+    }
+
+    button {
+      background-color: #4CAF50;
+      /* Green background */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      border-radius: 12px;
+      /* Rounded corners */
+    }
+
+    button:hover {
+      background-color: white;
+      color: black;
+      border: 2px solid #4CAF50;
+      /* Green border for hover effect */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container" dir="rtl">
+    <img src="https://www.technoda.org.il/warehouse/dynamic/260476.svg" </img> <br>
+    <h1>האקר פאזל למתקדמים</h1>
+    <textarea id="riddleBox" readonly></textarea>
+    <br>
+    <input type="text" id="answerBox" placeholder="הכניסו את תשובתכם" />
+    <br>
+    <button onclick="checkAnswer()">שלח</button>
+    <p id="feedback"></p>
+  </div>
+
+  <script>
+    let riddles = [
+      "איך קוראים לשיטה שהאקרים פיתחו כאשר המעמידים פנים שהם גופים אמינים כדי לקבל מידע רגיש?",
+      "האם עליכם להשתמש במידע אישי בסיסמתכם, כמו שמך או יום הולדתכם, בסיסמה שלכם?",
+      "איך נקראת השיטה המאפשרת הסתרת מידע?",
+      "קוראים לי חן ונולדתי ב 02.07. לא הייתי בחוגי סייבר. מהי הסיסמא שלי? 8 (רמז: 6 תווים - 2 בעברית ו 4 ספרות)",
+      "נחשו את הסיסמא (בין חמשת המוכרות בעולם)",
+      "למה קוראים לשיטה פישינג בשמה? היא דומה ל.. (בעברית)",
+      "דחא ףא םע אמסיס םיפתשמ אל (טפשמה תא ובתכ :זמר)",
+      "20:30 5:20:2:6:4",
+      "ישש! זכיתי באייפון 15 פרו מקס. האם עליי למלא פרטי אשראי על מנת לשלם על המשלוח?",
+      "שאלה אחורנה ומאתגרת, למי שייכת הקפיצה לרוחק במקום השביעי בכל הזמנים?"
+    ];
+
+    let answers = ["פישינג", "לא", "הצפנה", "חן0207", "123456789", "דייג", "לא משתפים סיסמא עם אף אחד", "כל הכבוד", "לא", "אינסה קראבץ"];
+
+
+    let colors = [
+      "#FFADAD", "#FFD6A5", "#FDFFB6", "#CAFFBF", "#9BF6FF", "#A0C4FF", "#BDB2FF", "#FFC6FF", "#FFFFFC", "#FFC3A0"
+    ];
+
+    let currentRiddle = 0;
+
+    window.onload = () => {
+      document.getElementById("riddleBox").value = riddles[currentRiddle];
+    };
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answerBox").value.toLowerCase();
+      if (userAnswer === answers[currentRiddle]) {
+        document.body.style.backgroundColor = colors[currentRiddle];
+        currentRiddle++;
+        if (currentRiddle < riddles.length) {
+          document.getElementById("riddleBox").value = riddles[currentRiddle];
+          document.getElementById("answerBox").value = "";
+          document.getElementById("feedback").textContent = "";
+        } else {
+          document.getElementById("feedback").textContent = "כל הכבוד, הצלחתם! אתם אלופי הסייבר";
+        }
+      } else {
+        document.getElementById("feedback").textContent = "תשובה שגויה, נסו שנית";
+      }
+    }
+  </script>
+</body>
+
+</html>
